@@ -16,7 +16,7 @@ Account.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        first_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
