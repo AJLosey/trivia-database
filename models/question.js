@@ -16,9 +16,13 @@ Question.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        question_answer: {
+        question_correct_answer: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        question_incorrect_answers: {
+            type: DataTypes.ARRAY,
+            allowNull: false
         },
         category_id: {
             type: DataTypes.INTEGER,

@@ -3,23 +3,24 @@ const session = require('express-session'); // https://www.npmjs.com/package/exp
 const path = require('path');
 // Handlebars - view engine for Express
 const exphbs = require('express-handlebars'); //https://www.npmjs.com/package/express-handlebars
-
+const Trivia = require('trivia-api')
+const trivia = new Trivia({ encoding: 'url3986' });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const sequelize = require('./config/config'); 
+const sequelize = require('./config/config');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // Create a session middleware
 const sess = {
-    secret: "Here we go super super secret key do the magic", //process.env.SECRET, - removed for heroku
-    cookie: {},
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-      db: sequelize
-    })
-  };
-  
+  secret: "Here we go super super secret key do the magic", //process.env.SECRET, - removed for heroku
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
 app.use(session(sess));
 // creating ExpressHandlebars instances
 const hbs = exphbs.create();
