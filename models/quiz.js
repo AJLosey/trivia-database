@@ -12,6 +12,10 @@ Quiz.init(
             primaryKey: true,
             autoIncrement: true
         },
+        quiz_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         quiz_description: {
             type: DataTypes.STRING,
             allowNull: false,
