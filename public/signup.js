@@ -1,6 +1,7 @@
 const signUp = async function (event) {
     event.preventDefault();
 
+    //queryselector should equal username form field on login page
     const username = document.querySelector('#username').value.trim();
 
     //queryselector should equal password form field on login page
@@ -20,4 +21,5 @@ const signUp = async function (event) {
     }
 };
 
+//querySelector should equal login form
 document.querySelector('#signup').addEventListener('submit', signup);
