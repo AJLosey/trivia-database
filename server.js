@@ -3,8 +3,6 @@ const session = require('express-session'); // https://www.npmjs.com/package/exp
 const path = require('path');
 // Handlebars - view engine for Express
 const exphbs = require('express-handlebars'); //https://www.npmjs.com/package/express-handlebars
-const Trivia = require('trivia-api')
-const trivia = new Trivia({ encoding: 'url3986' });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
