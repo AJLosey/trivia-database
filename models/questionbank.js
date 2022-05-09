@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class Question extends Model { }
+class QuestionBank extends Model { }
 
-Question.init(
+QuestionBank.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -12,40 +12,41 @@ Question.init(
             primaryKey: true,
             autoIncrement: true
         },
-        question_text: {
+        categoryid: {
+            type: DataTypes.INTEGER,
+            // references: {
+            //     model: "Category",
+            //     key: 'id'
+            // }
+        },
+        questiontype: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        question_correct_answer: {
+        difficulty: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        question_incorrect_answers: {
+        question: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
-        category_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: "category",
-                key: 'id'
-            }
+        correct_answer: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
-        account_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: "account",
-                key: 'id'
-            }
-        }
+        incorrect_answers: {
+            type: DataTypes.JSON,
+            allowNull: false,
+        },
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'question',
+        modelName: 'questionbank',
     }
 );
 
-module.exports = Question;
+module.exports = QuestionBank;
