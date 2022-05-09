@@ -21,7 +21,7 @@ Question.init(
             allowNull: false,
         },
         question_incorrect_answers: {
-            type: DataTypes.ARRAY,
+            type: DataTypes.STRING,
             allowNull: false
         },
         category_id: {
