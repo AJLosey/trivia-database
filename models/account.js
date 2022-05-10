@@ -34,6 +34,10 @@ Account.init(
                 newUserData.password = await bcrypt.hash(newUserData.password, 4);
                 return newUserData;
             },
+            beforeUpdate: async (newUserData) => {
+                newUserData.password = await bcrypt.hash(newUserData.password, 4);
+                return newUserData;
+            },
         },
         sequelize,
         timestamps: false,
