@@ -20,8 +20,6 @@ header {
     height: 12rem;
 }
 
-
-
 .carousel-inner {
     position: relative;
     width: 100%;
@@ -62,6 +60,10 @@ header {
 /* quiz cards section */
 .container-fluid {
     width: 100%;
+    padding: 5px;
+    margin: auto;
+    align-items: center;
+    align-content: center;
 }
 
 .container-fluid .row {
@@ -115,6 +117,7 @@ header {
 
 h2 {
     color: white;
+    padding-top: 3px;
 }
 
 h4 {
@@ -141,14 +144,7 @@ footer {
     left: 0px;
     right: 0px;
     height: 3rem;
-    background-color: black;
+    background-color: rgb(26,26,26);
     text-align: center;
     margin-top: 0.5rem;
-}
-
-/* cards need to stack one on top */
-@media only screen and (min-width: 600px) {
-    .img {
-
-    }
 }
