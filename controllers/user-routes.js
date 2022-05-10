@@ -1,6 +1,11 @@
 const router = require('express').Router();
-const { Account } = require('../../models');
+const { Account } = require('../models');
 
+
+//login/signup landing page with form
+router.get('/', withAuth, async (req, res) => {
+    //res.render(view for sign up/log in page)
+});
 
 //signup
 router.post('/signup', async (req, res) => {
@@ -60,14 +65,6 @@ router.post('/login', async (req, res) => {
 });
 
 //logout
-router.post('/logout', (req, res) => {
-    if (req.session.account) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
-});
+
 
 module.exports = router;
