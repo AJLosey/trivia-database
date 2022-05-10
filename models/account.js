@@ -16,7 +16,7 @@ Account.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        first_name: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -31,6 +31,10 @@ Account.init(
     {
         hooks: {
             beforeCreate: async (newUserData) => {
+                newUserData.password = await bcrypt.hash(newUserData.password, 4);
+                return newUserData;
+            },
+            beforeUpdate: async (newUserData) => {
                 newUserData.password = await bcrypt.hash(newUserData.password, 4);
                 return newUserData;
             },
