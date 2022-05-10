@@ -33,6 +33,29 @@ router.put('/password', async (req, res) => {
     }
 });
 
+
+//display all quizzes assigned to user
+router.get('/quizzes', async (req, res) => {
+    try {
+        const account = await Account.findAll({
+            where: {
+                name: req.session.account
+            }
+        });
+
+        const userQuizzes = await Quiz.findAll({
+            plain: true,
+            where: {
+                account_id: account.id
+            }
+        });
+
+        res.render('dashboard', userQuizzes)
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 //log out
 router.post('/logout', (req, res) => {
     if (req.session.account) {
