@@ -1,8 +1,12 @@
 const express = require('express'); // https://www.npmjs.com/package/express
 const session = require('express-session'); // https://www.npmjs.com/package/express-session
 const path = require('path');
+const routes = require('./controllers');
+
 // Handlebars - view engine for Express
 const exphbs = require('express-handlebars'); //https://www.npmjs.com/package/express-handlebars
+// Import the custom helper methods
+const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,8 +24,8 @@ const sess = {
 };
 
 app.use(session(sess));
-// creating ExpressHandlebars instances
-const hbs = exphbs.create();
+// Incorporate the custom helper methods
+const hbs = exphbs.create({ helpers });
 
 // Register `hbs.engine` with the Express app.
 app.engine('handlebars', hbs.engine);
@@ -31,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./controllers'));
+app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
