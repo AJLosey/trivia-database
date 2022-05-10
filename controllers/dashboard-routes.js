@@ -56,6 +56,10 @@ router.get('/quizzes', async (req, res) => {
     }
 });
 
+router.get('/new', (req, res) => {
+    res.redirect("/createquiz")
+})
+
 //log out
 router.post('/logout', (req, res) => {
     if (req.session.account) {
