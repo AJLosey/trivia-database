@@ -10,8 +10,27 @@ router.get('/', withAuth, async (req, res) => {
     } catch (err) {
         res.status(404).json(err)
     }
-}
+});
 
+
+//route for changing password
+router.put('/password', async (req, res) => {
+    try {
+        if (!req.body.newpass) {
+            res.status(400).json({ message: 'user must input a new password' });
+            return;
+        }
+        const updatedAccount = await Account.update({
+            password: req.body.newpass
+        }, {
+            where: {
+                name: req.session.account
+            }
+        });
+        res.status(200).json(updatedAccount);
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 //log out
