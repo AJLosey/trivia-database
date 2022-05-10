@@ -6,13 +6,13 @@ document.querySelector('#my-quizzes').addEventListener('click', displayQuizzes);
 
 document.querySelector('#logout-btn').addEventListener('click', logout);
 
+document.querySelector('#create-quiz-btn').addEventListener('click', createQuizRedirect);
+
 const changePassword = async function (event) {
     event.preventDefault();
 
-    //queryselector should equal password form field on login page
     const password = document.querySelector('#password').value.trim();
 
-    //fetch should equal route for logging in
     const response = await fetch('/dashboard/password', {
         method: 'PUT',
         body: JSON.stringify({ newpass: password }),
@@ -32,10 +32,32 @@ const displayQuizzes = async function () {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     });
+}
+
+const logout = async function () {
+    const response = await fetch('/dashboard/logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    })
 
     if (response.ok) {
         document.location.replace('/');
     } else {
         alert('Failed to log out.');
     }
+
+}
+
+const createQuizRedirect = async function () {
+    const response = await fetch('/dashboard/new', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+
+    if (response.ok) {
+        console.log("redirected to quiz page")
+    } else {
+        alert('Failed to log out.');
+    }
+
 }
