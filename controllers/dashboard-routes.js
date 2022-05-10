@@ -5,12 +5,16 @@ const withAuth = require('../utils/auth');
 
 // home page for user dashboard
 router.get('/', withAuth, async (req, res) => {
-    if (!req.session.account) {
-        res.status(401).redirect(/user)
+    try {
+        res.render('dashboard');
+    } catch (err) {
+        res.status(404).json(err)
     }
+}
+
 });
 
-
+//log out
 router.post('/logout', (req, res) => {
     if (req.session.account) {
         req.session.destroy(() => {

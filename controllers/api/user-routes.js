@@ -1,11 +1,26 @@
 const router = require('express').Router();
-const { Account } = require('../models');
+const { Account } = require('../../models');
 
 
-//login/signup landing page with form
-router.get('/', withAuth, async (req, res) => {
-    //res.render(view for sign up/log in page)
-});
+//login landing page
+router.get('/login', async (req, res) => {
+    try {
+        res.render('login');
+    } catch (err) {
+        res.status(404).json(err)
+    }
+}
+);
+
+//signup landing page
+router.get('/signup', async (req, res) => {
+    try {
+        res.render('signup');
+    } catch (err) {
+        res.status(404).json(err)
+    }
+}
+);
 
 //signup
 router.post('/signup', async (req, res) => {
