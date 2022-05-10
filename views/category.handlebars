@@ -1,8 +1,37 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{category}}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{category.category_name}}</li>
   </ol>
 </nav>
-<h1>Category Page</h1>
-<p>You are on {{category}} page.</p>
+<h1>{{category.category_name}} Trivia</h1>
+
+{{#if questions}}
+{{#each questions as |question|}}
+<div class="container-fluid">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Q. {{question.question}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-3 5"> </div>
+                <div class="quiz" id="quiz" data-toggle="buttons"> 
+                <label class="element-animation1 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1"> {{question.correct_answer}}</label> 
+                <label class="element-animation2 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2"> </label> 
+                <label class="element-animation3 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3"> </label> 
+                <label class="element-animation4 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">  </label> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>{{question.question}}</h3>
+<p>{{question.correct_answer}}</p>
+<p>{{question.incorrect_answers}}</p>
+{{/each}}
+{{else}}
+<p>Choose game you would like to play.</p>
+<a href="{{category.id}}/easy" type="button" class="btn btn-success">Easy</a>
+<a href="{{category.id}}/medium" type="button" class="btn btn-info">Medium</a>
+<a href="{{category.id}}/hard" type="button" class="btn btn-warning">Hard</a>
+{{/if}}

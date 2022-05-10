@@ -3,9 +3,10 @@
 <p>You are here to do great things.</p>
 <p>Let's Get Rollin'</p>
 </div>     
-
+{{#if categories}}
 <ul>
-    <li><a href='tag/history-trivia'>History Trivia</a></li>
-    <li><a href='tag/fun-trivia'>Fun Trivia</a></li>
+{{#each categories as |category|}}
+<li><a href="category/{{id}}">{{category_name}}</a></li>
+{{/each}}
 </ul>
-
+{{/if}}
