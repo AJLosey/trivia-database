@@ -12,7 +12,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Q. {{question.question}}</h3>
+                <h3>Q. {{decode_string question.question}}</h3>
             </div>
             <div class="modal-body">
                 <div class="col-xs-3 5"> </div>
@@ -25,8 +25,8 @@
         </div>
     </div>
 </div>
-<h3>{{question.question}}</h3>
-<p>{{question.correct_answer}}</p>
+<h3>{{decode_string question.question}}</h3>
+<p>{{decode_string question.correct_answer}}</p>
 <p>{{question.incorrect_answers}}</p>
 {{/each}}
 {{else}}
