@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const { Category } =  require('../models');
 // const { Post, Comment, User } = require('../models/'); // change model names
-const Category  = require('../models/category');
+// const Category  = require('../models/category');
 const QuestionBank  = require('../models/questionbank');
 // // Import the custom middleware
 const withAuth = require('../utils/auth'); // 

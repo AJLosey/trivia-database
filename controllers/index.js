@@ -12,7 +12,7 @@ router.use('/', homeRoutes);
 router.use('/tag/', categoryRoutes);
 router.use('/category/', categoryRoutes);
 router.use('/dashboard', dashboardRoutes);
-router.use('/api', apiRoutes);
+// router.use('/api', apiRoutes);
 //router.use('/createquiz', createQuiz)
 
 module.exports = router;
