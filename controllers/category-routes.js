@@ -1,5 +1,7 @@
 // Routes for home page goes here
 const router = require('express').Router();
+const { Category } =  require('../models');
+// const { Post, Comment, User } = require('../models/'); // change model names
 const Category  = require('../models/category');
 const QuestionBank  = require('../models/questionbank');
 // // Import the custom middleware
@@ -17,7 +19,8 @@ const withAuth = require('../utils/auth'); //
       res.status(500).json(err);
      }
  });    
-
+  
+   module.exports = router;
 // Author: Mayur
 // Purpose: Get route to fetch list of questions by categoryid and difficulty
  router.get('/:id/:difficulty', async (req, res) => {  
