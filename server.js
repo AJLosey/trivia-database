@@ -7,7 +7,6 @@ const routes = require('./controllers');
 const exphbs = require('express-handlebars'); //https://www.npmjs.com/package/express-handlebars
 // Import the custom helper methods
 const helpers = require('./utils/helpers');
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 const sequelize = require('./config/connection');
@@ -34,6 +33,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public/images'));
 
 app.use(routes);
 

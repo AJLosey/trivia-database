@@ -2,6 +2,26 @@ const router = require('express').Router();
 const { Account } = require('../../models');
 
 
+//login landing page
+router.get('/login', async (req, res) => {
+    try {
+        res.render('login');
+    } catch (err) {
+        res.status(404).json(err)
+    }
+}
+);
+
+//signup landing page
+router.get('/signup', async (req, res) => {
+    try {
+        res.render('signup');
+    } catch (err) {
+        res.status(404).json(err)
+    }
+}
+);
+
 //signup
 router.post('/signup', async (req, res) => {
     try {
@@ -60,14 +80,6 @@ router.post('/login', async (req, res) => {
 });
 
 //logout
-router.post('/logout', (req, res) => {
-    if (req.session.account) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
-});
+
 
 module.exports = router;
