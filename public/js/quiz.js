@@ -97,9 +97,10 @@ function endthegame()
     quizSectionEl.append(scoreEl);
 }
 // generateQuestions wil call /api/quiz and get 10 questions from database
-const generateQuestions = (id, difficulty) => {
+const generateQuestions = (categoryId, quizId) => {
     quizQuestions = []; // empty array
-    const endpointURL = `/api/quiz/${id}/${difficulty}/`;
+    const endpointURL = `/api/quiz/category/${categoryId}/quiz/${quizId}/`;
+    console.log(endpointURL);
     fetch(endpointURL)    
     .then(function (response) {        
     if (response.ok) {
@@ -108,9 +109,9 @@ const generateQuestions = (id, difficulty) => {
             for(let i = 0; i < questions.length; i++)
             {
                 const questionJson =  {
-                    question: questions[i].question,
-                    correct_answer: questions[i].correct_answer,
-                    incorrect_answers: questions[i].incorrect_answers                    
+                    question: questions[i].question_text,
+                    correct_answer: questions[i].question_correct_answer,
+                    incorrect_answers: questions[i].question_incorrect_answers                    
                 };
                 quizQuestions.push(questionJson);
             }                          
@@ -126,10 +127,9 @@ const generateQuestions = (id, difficulty) => {
 }
 
 // init will call generateQuestions for API call to fetch quesitons
-function init(){
-  const difficulty = this.value;
+function init(quizId, quizName){          
   const strs = document.URL.split('/');
-  const id = strs.at(-1); 
+  const categoryId = strs.at(-1);       
    // Create parent div container
    let divContainerEl = $('<div class="container-fluid">');
    // Create div modal dialog that will append to parent divContainerEl
@@ -141,7 +141,7 @@ function init(){
    
    // append question to divModalHeaderEl
     let questionHeadingEl = $('<h3>');   
-    questionHeadingEl.html(`Difficulty: ${difficulty.toUpperCase()}`);   
+    questionHeadingEl.html(`Quiz/Level: ${quizName}`);   
     divModalHeaderEl.append(questionHeadingEl);
     divModalContentEl.append(divModalHeaderEl);
    // Create div modal body will append to parent divModalContentEl
@@ -157,19 +157,21 @@ function init(){
    // close all divs
    divModalBodyEl.append(divQuizEl);
    let buttonEl = `<button type="button" class="btn btn-success" 
-   onclick="generateQuestions(${id},'${difficulty}')">Start This Quiz</button>`;
+   onclick="generateQuestions(${categoryId},'${quizId}')">Start This Quiz</button>`;
    divModalBodyEl.append(buttonEl);
    divModalContentEl.append(divModalBodyEl);
    divModalDialogEl.append(divModalContentEl);
    divContainerEl.append(divModalDialogEl);   
    // finally append everything to quizsection
    quizSectionEl.text('');
+   quizListEl.text('');
    quizSectionEl.append(divContainerEl);
   //generateQuestions(id, difficulty);  
 }
 // listner for quiz start with user choice of difficulty
-document.querySelector('#btneasy').addEventListener('click', init);
-document.querySelector('#btnmedium').addEventListener('click', init);
-document.querySelector('#btnhard').addEventListener('click', init);
+//document.querySelector('.playbtn').addEventListener('click', init);
+// document.querySelector('#btneasy').addEventListener('click', init);
+// document.querySelector('#btnmedium').addEventListener('click', init);
+// document.querySelector('#btnhard').addEventListener('click', init);
 
 // You have 30 seconds to answer each question. The faster you answer, the higher your score. When you are done, try again to beat your best score!

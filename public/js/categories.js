@@ -41,12 +41,12 @@ fetch(quizByCategoryURL)
             console.log(quizzes);
             let ulEl = $('<ul class="list-group">');           
             for(let i = 0; i < quizzes.length; i++)
-            {
-                // let categorylink = "<a href='/category/" + 
-                // categories[i].id + "'>" +categories[i].category_name.replace('Entertainment: ','') 
-                // +"</a>";
-                let liEl = $('<li class="list-group-item">');                         
-                liEl.html(quizzes[i].quiz_name);                
+            {             
+                let quizlink = quizzes[i].quiz_name + 
+                `<button class="btn btn-success float-right playbtn" 
+                 onclick="init('${quizzes[i].id}', '${quizzes[i].quiz_name}')">Play</button>`;
+                let liEl = $('<li class="list-group-item quiz">');                         
+                liEl.html(quizlink);                
                 ulEl.append(liEl);   
             }  
             quizListEl.append(ulEl);   

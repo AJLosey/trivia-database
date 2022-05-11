@@ -1,6 +1,7 @@
 const sequelize = require('../config/connection');
 const { Account, Category, Quiz, Question, QuizQuestion} = require('../models');
-const Trivia = require('trivia-api')
+const Trivia = require('trivia-api');
+const { response } = require('express');
 const trivia = new Trivia({ encoding: 'url3986' });
 
 const seedDatabase = async () => {
@@ -12,7 +13,7 @@ const seedDatabase = async () => {
   }
   Account.create(adminUser)
   .then(res => {
-    userId = res.uniqno;
+    userId = res.id;   
     // Step 2: insert categories from API   
    let categoriesarray = [];
    trivia.getCategories()    
@@ -41,14 +42,14 @@ function fetchQuestionsByCategory(userId, categoriesarray)
     for (let index = 0; index < categoriesarray.length; index++) {
         let categoryId = categoriesarray[index].id;
         let category_name = categoriesarray[index].category_name;
-          questions(categoryId, category_name, userId, 'multiple', 'easy');
-          questions(categoryId, category_name, userId, 'multiple', 'medium');
-          questions(categoryId, category_name, userId, 'multiple', 'hard');
+          questions(categoryId, userId, 'multiple', 'easy');
+          questions(categoryId, userId, 'multiple', 'medium');
+          questions(categoryId, userId, 'multiple', 'hard');
         
       }
 }
 
-const questions = (categoryId, category_name, userId, type, difficulty) => {
+const questions = (categoryId, userId, type, difficulty) => {
     let options = {
       type: type,
       amount: 10,
@@ -57,6 +58,8 @@ const questions = (categoryId, category_name, userId, type, difficulty) => {
     };    
     let questionsarray = [];
     let questionTableArray = [];
+    let quizId;
+    let question_id;
     trivia.getQuestions(options)
       .then(results => {    
           // create record in quiz table
@@ -67,8 +70,10 @@ const questions = (categoryId, category_name, userId, type, difficulty) => {
             "account_id": userId
           }
           Quiz.create(quizRecord)
-          .then(res => {
-                quizId = res.uniqno;
+          .then(resquizId => {
+                quizId = resquizId.id;  
+               
+                //console.log(resquiz);                
 // iterate over questions
                 results.results.forEach(question => {
                     const questionTableJson = {
@@ -78,13 +83,21 @@ const questions = (categoryId, category_name, userId, type, difficulty) => {
                     "category_id": categoryId,
                     "account_id": userId
                 };          
+                if(quizId==1 && difficulty=="medium")              
+                {
+                  console.log(questionTableJson);
+                  process.exit();
+                }
                 Question.create(questionTableJson)
-                .then(res => {
-                    question_id = res.id; //uniqno;
+                .then(resquestionId => {
+                     question_id = resquestionId.id;                
+
+//                    question_id = resquestion.uniqno;
                     const quizQuestionRecord = {
                       "quiz_id": quizId,
                       "question_id": question_id
                     }
+                    //console.log(quizQuestionRecord);
                     QuizQuestion.create(quizQuestionRecord)
 
                 })

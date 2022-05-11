@@ -35,12 +35,10 @@
     <p>{{decode_string question.correct_answer}}</p>
     <p>{{question.incorrect_answers}}</p>
     {{/each}}
-    {{else}}
-    <p>Choose game you would like to play.</p>    
-    <div id="quizlist"></div>
-<button type="button" class="btn btn-success" id="btneasy" value="easy">Easy</button>
-<button type="button" class="btn btn-warning" id="btnmedium" value="medium">Medium</button>
-<button type="button" class="btn btn-danger" id="btnhard" value="hard">Hard</button>
+    {{else}}      
+    <div id="quizlist">
+      <p>Choose game you would like to play.</p>  
+    </div>
 <div id="quizsection"></div>
     {{/if}}
   </section>  
