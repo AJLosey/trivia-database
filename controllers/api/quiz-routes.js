@@ -21,4 +21,19 @@ router.get('/:id/:difficulty', async (req, res) => {
       }
   });  
 
+  // Author: Mayur
+// Purpose: Get route to fetch random question of the day
+router.get('/questionoftheday', async (req, res) => {  
+   try {      
+      const questionData = await QuestionBank.findAll({                 
+          //order: sequelize.random(),       
+          limit: 1
+      });
+      const questions = questionData.map((question) => {return question.get({ plain: true})})    
+      res.status(200).json(questions);
+   } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+     }
+ });  
 module.exports = router;
