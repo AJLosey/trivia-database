@@ -7,7 +7,7 @@ const dashboardRoutes = require('./dashboard-routes.js'); // user dashboard page
 const userRoutes = require('./api/user-routes'); // login-signup page
 
 router.use('/', homeRoutes);
-router.use('/category/', categoryRoutes);
+router.use('/category', categoryRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/api', apiRoutes);
 
