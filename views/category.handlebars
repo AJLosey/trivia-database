@@ -12,7 +12,6 @@
   </aside>
   <section class="col-sm-9">
       <h1>{{category.category_name}} Trivia</h1>
-
       {{#if questions}}
 {{#each questions as |question|}}
 <div class="container-fluid">
@@ -37,11 +36,11 @@
     <p>{{question.incorrect_answers}}</p>
     {{/each}}
     {{else}}
-    <p>Choose game you would like to play.</p>        
+    <p>Choose game you would like to play.</p>    
+    <div id="quizlist"></div>
 <button type="button" class="btn btn-success" id="btneasy" value="easy">Easy</button>
 <button type="button" class="btn btn-warning" id="btnmedium" value="medium">Medium</button>
 <button type="button" class="btn btn-danger" id="btnhard" value="hard">Hard</button>
-<button type="button" class="btn btn-info">Create Your Own</button>
 <div id="quizsection"></div>
     {{/if}}
   </section>  
