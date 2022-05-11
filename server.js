@@ -7,9 +7,6 @@ const routes = require('./controllers');
 const exphbs = require('express-handlebars'); //https://www.npmjs.com/package/express-handlebars
 // Import the custom helper methods
 const helpers = require('./utils/helpers');
-
-
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 const sequelize = require('./config/connection');

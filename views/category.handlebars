@@ -4,9 +4,16 @@
     <li class="breadcrumb-item active" aria-current="page">{{category.category_name}}</li>
   </ol>
 </nav>
-<h1>{{category.category_name}} Trivia</h1>
 
-{{#if questions}}
+<section class="row">
+  <aside class="col-sm-3">
+      <h2 class="bg-info p-2 text-white rounded">Categories</h2>
+      <div id="categorieslist"></div>     
+  </aside>
+  <section class="col-sm-9">
+      <h1>{{category.category_name}} Trivia</h1>
+
+      {{#if questions}}
 {{#each questions as |question|}}
 <div class="container-fluid">
     <div class="modal-dialog">
@@ -24,14 +31,21 @@
             </div>
         </div>
     </div>
-</div>
-<h3>{{decode_string question.question}}</h3>
-<p>{{decode_string question.correct_answer}}</p>
-<p>{{question.incorrect_answers}}</p>
-{{/each}}
-{{else}}
-<p>Choose game you would like to play.</p>
-<a href="{{category.id}}/easy" type="button" class="btn btn-success">Easy</a>
-<a href="{{category.id}}/medium" type="button" class="btn btn-info">Medium</a>
-<a href="{{category.id}}/hard" type="button" class="btn btn-warning">Hard</a>
-{{/if}}
+    </div>
+    <h3>{{decode_string question.question}}</h3>
+    <p>{{decode_string question.correct_answer}}</p>
+    <p>{{question.incorrect_answers}}</p>
+    {{/each}}
+    {{else}}
+    <p>Choose game you would like to play.</p>        
+<button type="button" class="btn btn-success" id="btneasy" value="easy">Easy</button>
+<button type="button" class="btn btn-warning" id="btnmedium" value="medium">Medium</button>
+<button type="button" class="btn btn-danger" id="btnhard" value="hard">Hard</button>
+<button type="button" class="btn btn-info">Create Your Own</button>
+<div id="quizsection"></div>
+    {{/if}}
+  </section>  
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/categories.js"></script>
+<script src="/js/quiz.js"></script>
