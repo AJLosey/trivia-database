@@ -61,7 +61,6 @@ function displayQuestionToUser(index) {
 
     timerInterval = setInterval(function () {
         secondsLeft--;
-        console.log(secondsLeft);
         if (secondsLeft == 0) {
             validateanswer(index, 'timeout')
         };
@@ -81,10 +80,10 @@ function displayQuestionToUser(index) {
 function validateanswer(questionno, useranswer) {
     clearInterval(timerInterval);
     userselectedanswers[questionno] = useranswer;
-    console.log(userselectedanswers);
     // check if questions left move to next or end game
 
-    timerScore.push[secondsLeft];
+    timerScore.push(secondsLeft);
+    console.log(timerScore);
 
     if (questionno < quizQuestions.length - 1)
         displayQuestionToUser(++questionno)
