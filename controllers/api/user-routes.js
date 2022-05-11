@@ -35,6 +35,7 @@ router.post('/signup', async (req, res) => {
 
             //keeps track of who is logged in
             req.session.account = req.body.username;
+            req.session.loggedIn = true;
 
             req.status(200).json(createAccount);
         });
@@ -70,6 +71,7 @@ router.post('/login', async (req, res) => {
 
             //keeps track of who is logged in
             req.session.account = req.body.username;
+            req.session.loggedIn = true;
 
             req.status(200).json(userAccount);
         });
