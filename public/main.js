@@ -1,4 +1,4 @@
-document.querySelector('#logout-link').addEventListener('click', logout);
+
 
 const logout = async function () {
     console.log('check')
@@ -14,3 +14,5 @@ const logout = async function () {
     }
 
 }
+
+document.querySelector('#logout-link').addEventListener('click', logout);
