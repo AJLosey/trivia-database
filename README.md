@@ -14,7 +14,7 @@
   ## Description
   Endless Trivia is an application made for trivia enthusiasts who are looking for a challenge, students looking to study a specific topic and people who like to pass time with quizzes. 
   
-  When visiting the site, users can sign up and login, reset their password, and view their history of previously played quizzes. Users can also participate in the Question of the Day, browse quizzes by category, and create their own quizzes!
+  When visiting the site, users can sign up and login, participate in the Question of the Day, and browse quizzes by category!
 
 
   ## Deployment
