@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Category, Question, Quiz, QuizQuestion } = require('../../models');
+const sequelize = require('../../config/connection');
 
 // Author: Mayur
 // Purpose: Get route to fetch list of questions by categoryid and difficulty
@@ -49,10 +50,10 @@ router.get('/bycategory/:id', async (req, res) => {
  });  
   // Author: Mayur
 // Purpose: Get route to fetch random question of the day
-router.get('/questionoftheday', async (req, res) => {  
+router.get('/questionoftheday', async (req, res) => {    
    try {      
-      const questionData = await QuestionBank.findAll({                 
-          //order: sequelize.random(),       
+      const questionData = await Question.findAll({                 
+          order: sequelize.random(),       
           limit: 1
       });
       const questions = questionData.map((question) => {return question.get({ plain: true})})    
