@@ -2,6 +2,22 @@ const router = require('express').Router();
 const { Account } = require('../../models');
 
 
+//get id from user logged in to current session
+router.get('/id', async (req, res) => {
+    try {
+        Account.findAll({
+            plain: true,
+            attributes: id,
+            where: {
+                name: req.session.account
+            }
+        })
+    } catch (err) {
+        res.status(404).json(err)
+    }
+}
+);
+
 //login landing page
 router.get('/login', async (req, res) => {
     try {
