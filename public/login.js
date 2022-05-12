@@ -8,7 +8,7 @@ const loginForm = async function (event) {
     const password = document.querySelector('#password').value.trim();
 
     //fetch should equal route for logging in
-    const response = await fetch('api/users/login', {
+    const response = await fetch('api/user/login', {
         method: 'POST',
         body: JSON.stringify({
             username: username,
