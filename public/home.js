@@ -13,7 +13,7 @@ btn.addEventListener("click", () => {
     }
 });
 
-btn.addEventListener("submit", () => {
+btn.addEventListener("click", () => {
     if (selectedAnswer === "Uruguay") {
         output.innerText = `Correct!`;
         console.log ('correct');
