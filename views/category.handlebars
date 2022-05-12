@@ -5,12 +5,10 @@
   </ol>
 </nav>
 
-<section class="row">
-  <aside class="col-sm-3">
-      <h2 class="bg-info p-2 text-white rounded">Categories</h2>
-      <div id="categorieslist"></div>     
-  </aside>
-  <section class="col-sm-9">
+
+  
+  
+  <section>
       <h1>{{category.category_name}} Trivia</h1>
       {{#if questions}}
 {{#each questions as |question|}}
@@ -39,10 +37,23 @@
     <div id="quizlist">
       <p>Choose game you would like to play.</p>  
     </div>
-<div id="quizsection"></div>
+    <div class="row">    
+    <div class="col-12 col-md-9">
+      <div id="quizsection"></div>
+    </div>    
+    <div class="col-12 col-md-3" id="quizsummaryarea">
+      <div id="questionssummary" class="text-center"></div> 
+      <hr>
+      <div id="userscoresummary" class="text-center"><h3>Your Score: </h3></div> 
+      <hr>
+      <div id="answersummary" class="text-center"></div> 
+    </div>
+    </div>
     {{/if}}
   </section>  
-</section>
+    <h2 class="bg-info p-2 text-white rounded mt-5">Categories</h2>
+      <div id="categorieslist"></div>     
+  
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/categories.js"></script>
 <script src="/js/quiz.js"></script>

@@ -1,23 +1,34 @@
 const quizSectionEl = $('#quizsection');
+const gameSummaryEl = $('#gamesummary');
+const questionSummaryEl = $('#questionssummary');
+const scoreSummaryEl = $('#userscoresummary');
+const answerSummaryEl = $('#answersummary');
+const quizSummaryAreaEl = $('#quizsummaryarea');
+
 // global variables
 let quizQuestions = [];
 let userselectedanswers = [];
+let bonus_time_limit; // if seconds left add remaning second to user score
+let timerInterval;
+let userScore = 0;
 
+quizSummaryAreaEl.hide();
 // Build quiz 
 function buildQuizGame()
 {
     // append question#1 to user screen
     displayQuestionToUser(0);
+    quizSummaryAreaEl.show();
 }   
 
 // display questions one by one to frmcodequiz
 function displayQuestionToUser(index)
 {    
     const toalQuestions = quizQuestions.length;    
-    quizSectionEl.text('');
+    quizSectionEl.text('');    
     // prompt new question to user
     // Create parent div container
-    quizSectionEl.append(`<h3 class='text-right mr-5'>QUESTION ${index + 1} of ${toalQuestions}`);
+    questionSummaryEl.html(`<h3 class='text-right mr-5'>QUESTION ${index + 1} of ${toalQuestions}`);
     let divContainerEl = $('<div class="container-fluid">');
     // Create div modal dialog that will append to parent divContainerEl
     let divModalDialogEl = $('<div class="modal-dialog">');
@@ -63,10 +74,35 @@ function displayQuestionToUser(index)
     divContainerEl.append(divModalDialogEl);   
     // finally append everything to quizsection
     quizSectionEl.append(divContainerEl);
+    bonusTimeLimit = 30; // reset second to 30 for each question
+    
+    // run timer don't show to user
+    timerInterval = setInterval(() => {
+        bonusTimeLimit--;
+        if (bonusTimeLimit === 0) {          
+        // Stops execution of action at set interval
+           clearInterval(timerInterval);        
+        }
+      }, 1000);
 }    
 // validate user answer and prompt next question
-function validateanswer(questionno, useranswer){
+function validateanswer(questionno, useranswer){    
     userselectedanswers[questionno] = useranswer;
+    
+    if(useranswer == quizQuestions[questionno].correct_answer)
+    {
+        // correct add score
+        userScore += 10;
+        if(bonusTimeLimit > 0)
+        userScore += bonusTimeLimit;
+        scoreSummaryEl.html(`<h3>Your Score: ${userScore}</h3>`);
+        answerSummaryEl.html(`<h3>Your answer was <span class="text-success">correct</span>!</h3>`);
+    }
+    else{
+        scoreSummaryEl.html(`<h3>Your Score: ${userScore}</h3>`);
+        answerSummaryEl.html(`<h3>Your answer was <span class="text-danger">wrong</span>!</h3>`);
+    }   
+    
      // check if questions left move to next or end game
      if(questionno<quizQuestions.length-1)      
      displayQuestionToUser(++questionno)
@@ -81,7 +117,7 @@ function endthegame()
 {
     quizSectionEl.text('');
     let pEl = $(`<h3 class="p-2 text-center">Thank you for playing the game!</h3>`);  
-    quizSectionEl.append(pEl);
+    //quizSectionEl.append(pEl);
     let toalQuestions = quizQuestions.length;        
     let totalCorrectAnswers = 0;
     let totalWrongAnswers = 0;
@@ -90,17 +126,17 @@ function endthegame()
         totalCorrectAnswers++;
         else
         totalWrongAnswers++;
-    }    
-    const userScore = (totalCorrectAnswers * 100) / toalQuestions;
+    }        
     let scoreEl = $(`<h4 class="p-2 text-center">Your score is ${userScore} (${totalCorrectAnswers} 
         questions out of ${toalQuestions}).</h4>`);  
-    quizSectionEl.append(scoreEl);
+    quizSectionEl.html(`<h3 class="p-2 text-center">Thank you for playing the game!<br>
+    Your score is ${userScore} (${totalCorrectAnswers} 
+        questions out of ${toalQuestions}).</h3>`);
 }
 // generateQuestions wil call /api/quiz and get 10 questions from database
 const generateQuestions = (categoryId, quizId) => {
     quizQuestions = []; // empty array
-    const endpointURL = `/api/quiz/category/${categoryId}/quiz/${quizId}/`;
-    console.log(endpointURL);
+    const endpointURL = `/api/quiz/category/${categoryId}/quiz/${quizId}/`;    
     fetch(endpointURL)    
     .then(function (response) {        
     if (response.ok) {
