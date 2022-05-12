@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { Account, Category, Quiz, Question, QuizQuestion} = require('../models');
+const { Account, Category, Quiz, Question, QuizQuestion, QuestionBank} = require('../models');
 const Trivia = require('trivia-api');
 const { response } = require('express');
 const trivia = new Trivia({ encoding: 'url3986' });
