@@ -3,7 +3,7 @@ const Category = require("./category");
 const Question = require("./question");
 const QuizQuestion = require("./quiz-questions");
 const Quiz = require("./quiz");
-const QuestionBank = require("./Questionbank");
+//const QuestionBank = require("./questionbank");
 
 Question.belongsTo(Account, {
     foreignKey: 'account_id'
