@@ -1,11 +1,24 @@
-# Endless Trivia Application
+# ✨ Endless Trivia Application ✨
 
- ![badge](https://img.shields.io/badge/license-MIT-brightgreen)<br />
+ ![badge](https://img.shields.io/badge/license-MIT-brightgreen)
+ ![badge](https://img.shields.io/github/languages/count/AJLosey/trivia-database)
+
+   ## Table of Contents
+  1. [Description](#description)
+  2. [Deployment](#deployment)
+  3. [Requirements](#project-requirements)
+  4. [Technologies](#technologies) 
+  5. [Screenshots](#screenshots)
+  6. [Contributors](#contributors)
 
   ## Description
   Endless Trivia is an application made for trivia enthusiasts who are looking for a challenge, students looking to study a specific topic and people who like to pass time with quizzes. 
   
   When visiting the site, users can sign up and login, reset their password, and view their history of previously played quizzes. Users can also participate in the Question of the Day, browse quizzes by category, and create their own quizzes!
+
+
+  ## Deployment
+  Deployed Application: https://triviabymmaac.herokuapp.com/
 
   ## Project Requirements
   * Use Node.js and Express.js to create a RESTful API.
@@ -22,15 +35,6 @@
   * Be interactive (i.e., accept and respond to user input).
   * Meet good-quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
   * Have a professional README (with unique name, description, technologies used, screenshot, and link to deployed application).
-
-
-
-  ## Table of Contents
-  1. [Description](#description)
-  2. [Requirements](#project-requirements)
-  3. [Technologies](#technologies) 
-  4. [Screenshots](#screenshots)
-  5. [Contributors](#contributors)
 
   ## Technologies
   * Node.js
@@ -52,13 +56,9 @@
   ![screenshot of animal quiz 2](./public/images/SS6.png)
 
   ## Contributors
-  * Aaron Losey
-    * github: AJLosey
-  * Anissa Williams
-    * github: Anissawillams
-  * Cody Claussen
-    * github: Greenbear25
-  * Mayur Patel
-    * github: pmayur0680
-  * Melissa Hookey
-    * github: melissahookey
+   ![GitHub Contributors Image](https://contrib.rocks/image?repo=AJLosey/trivia-database)
+  * [Aaron Losey](https://github.com/AJLosey)
+  * [Anissa Williams](https://github.com/Anissawillams)
+  * [Cody Claussen](https://github.com/Greenbear25)
+  * [Mayur Patel](https://github.com/pmayur0680)
+  * [Melissa Hookey](https://github.com/melissahookey)
