@@ -37,8 +37,7 @@ fetch(quizByCategoryURL)
 .then(function (response) {        
     if (response.ok) {
         response.json().then(function (quizzes) {            
-            // Create Ul element            
-            console.log(quizzes);
+            // Create Ul element                        
             let ulEl = $('<ul class="list-group">');           
             for(let i = 0; i < quizzes.length; i++)
             {             

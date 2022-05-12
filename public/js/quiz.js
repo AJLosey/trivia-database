@@ -81,7 +81,7 @@ function endthegame()
 {
     quizSectionEl.text('');
     let pEl = $(`<h3 class="p-2 text-center">Thank you for playing the game!</h3>`);  
-    quizSectionEl.append(pEl);
+    //quizSectionEl.append(pEl);
     let toalQuestions = quizQuestions.length;        
     let totalCorrectAnswers = 0;
     let totalWrongAnswers = 0;
@@ -94,13 +94,14 @@ function endthegame()
     const userScore = (totalCorrectAnswers * 100) / toalQuestions;
     let scoreEl = $(`<h4 class="p-2 text-center">Your score is ${userScore} (${totalCorrectAnswers} 
         questions out of ${toalQuestions}).</h4>`);  
-    quizSectionEl.append(scoreEl);
+    quizSectionEl.html(`<h3 class="p-2 text-center">Thank you for playing the game!<br>
+    Your score is ${userScore} (${totalCorrectAnswers} 
+        questions out of ${toalQuestions}).</h3>`);
 }
 // generateQuestions wil call /api/quiz and get 10 questions from database
 const generateQuestions = (categoryId, quizId) => {
     quizQuestions = []; // empty array
-    const endpointURL = `/api/quiz/category/${categoryId}/quiz/${quizId}/`;
-    console.log(endpointURL);
+    const endpointURL = `/api/quiz/category/${categoryId}/quiz/${quizId}/`;    
     fetch(endpointURL)    
     .then(function (response) {        
     if (response.ok) {

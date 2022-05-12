@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id);
     const category = categoryData.get({ plain: true });
-    res.render('category', { category, loggedIn: req.session.loggedIn, layout: 'category' });
+    res.render('category', { category, loggedIn: req.session.loggedIn});
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
