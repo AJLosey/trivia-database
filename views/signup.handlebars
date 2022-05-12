@@ -18,29 +18,32 @@
             <br>
             {{!-- Error displayed -- If condition --}}
             {{#if errors}}
-                {{!-- Foreach loop --}}
-                {{#each errors}}
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <strong>{{msg}}</strong>
-                        <button class="close" data-dismiss="alert"><span>&times;</span></button>
-                    </div>
-                {{/each}}
-                {{!-- End Foreach loop--}}
+            {{!-- Foreach loop --}}
+            {{#each errors}}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>{{msg}}</strong>
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+            </div>
+            {{/each}}
+            {{!-- End Foreach loop--}}
             {{/if}}
             {{!-- End If Condition --}}
-            
-            <form method="post" id="registration" action="">
+
+            <form id="signup">
                 <div class="form-group">
                     <label for="fname">Username <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Your Username" value="{{uname}}">
+                    <input type="text" class="form-control" id="username" name="username"
+                        placeholder="Enter Your Username" value="{{uname}}">
                 </div>
                 <div class="form-group">
                     <label for="password">Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Your Password"value="{{password}}">
+                    <input type="password" class="form-control" name="password" id="password"
+                        placeholder="Enter Your Password" value="{{password}}">
                 </div>
                 <div class="form-group">
                     <label for="cpassword">Confirm Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Enter Same as Password" value="{{cpassword}}">
+                    <input type="password" class="form-control" name="cpassword" id="cpassword"
+                        placeholder="Enter Same as Password" value="{{cpassword}}">
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Register" class="btn btn-info btn-block">
@@ -48,7 +51,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-8">
-                            Already user? Login <a href="/login">here</a>
+                            Already user? Login <a href="/api/user/login">here</a>
                         </div>
                     </div>
                 </div>
@@ -58,6 +61,7 @@
 </body>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/signup.js"></script>
 <script>
     setTimeout(() => {
         $('.alert').remove();
