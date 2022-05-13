@@ -24,24 +24,39 @@ router.get('/signup', async (req, res) => {
 
 //signup
 router.post('/signup', async (req, res) => {
-    try {
-        const createAccount = Account.create({
-            name: req.body.username,
-            password: req.body.password
-        });
+    const userAccount = await Account.findOne({
+        where: {
+            name: req.body.username
+        }
+    });
+
+    if (userAccount) {
+        res.status(500).json('This account already exists');
+    } else {
 
 
-        req.session.save(() => {
+        try {
+            const createAccount = Account.create({
+                name: req.body.username,
+                password: req.body.password
+            });
 
-            //keeps track of who is logged in
-            req.session.account = req.body.username;
-            req.session.loggedIn = true;
 
-            res.status(200).json(createAccount);
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+            req.session.save(() => {
+
+                //keeps track of who is logged in
+                req.session.account = req.body.username;
+                req.session.loggedIn = true;
+
+                res.status(200).json(createAccount);
+            });
+            req.session.reload(function (err) {
+                console.log(err)
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
     }
 
 });
@@ -74,6 +89,9 @@ router.post('/login', async (req, res) => {
             req.session.loggedIn = true;
 
             res.status(200).json(userAccount);
+        });
+        req.session.reload(function (err) {
+            console.log(err)
         });
     } catch (err) {
         console.log(err);

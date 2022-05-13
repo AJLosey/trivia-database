@@ -9,6 +9,13 @@ const signUp = async function (event) {
     //queryselector should equal password form field on login page
     const password = document.querySelector('#password').value.trim();
 
+    const cpassword = document.querySelector('#cpassword').value.trim();
+
+    if (password != cpassword) {
+        alert('passwords must match');
+        return;
+    }
+
     if (username && password) {
         const response = await fetch('/api/user/signup', {
             method: 'POST',
@@ -21,6 +28,7 @@ const signUp = async function (event) {
             alert('Failed to sign up.');
         }
     }
+
 };
 
 //querySelector should equal login form
