@@ -1,52 +1,54 @@
 // Routes for home page goes here
 const router = require('express').Router();
-const { Home } =  require('../models');
+const { Home } = require('../models');
 // const { Post, Comment, User } = require('../models/'); // change model names
-const Category  = require('../models/category');
+const Category = require('../models/category');
 // // Import the custom middleware
- const withAuth = require('../utils/auth'); 
+const withAuth = require('../utils/auth');
 
 // Author: Mayur
 // Purpose: Get route to fetch list of all categories order by category_name from database
- router.get('/', async (req, res) => {  
+router.get('/', async (req, res) => {
   try {
-    const categoryData = await Category.findAll({     
-      order: 
-        ['category_name'],   
-      attributes: ['id','category_name']   
+    const categoryData = await Category.findAll({
+      order:
+        ['category_name'],
+      attributes: ['id', 'category_name']
     });
-    const categories = categoryData.map((category) => {return category.get({ plain: true})})    
+    const categories = categoryData.map((category) => { return category.get({ plain: true }) })
     console.log(categories);
-    res.render('index', { 
+    res.render('index', {
       categories,
       loggedIn: req.session.loggedIn,
-     });
+    });
+
+    console.log(req.session.loggedIn)
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
-  }   
- });    
+  }
+});
 
 // // show login page to new user, logged in redirect to home page
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/login');
-      return;
-    }
-  
-    res.render('login');
-  });
-  
+  if (req.session.loggedIn) {
+    res.redirect('/login');
+    return;
+  }
+
+  res.render('login');
+});
+
 //   // show signup page to new user, logged in redirect to home page
-  router.get('/signup', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/signup');
-      return;
-    }
-  
-    res.render('signup');
-  });
-  
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/signup');
+    return;
+  }
+
+  res.render('signup');
+});
+
 // router.get('/:category', (req, res) => {
 //   res.redirect('/category', '');
 // });
@@ -54,4 +56,4 @@ router.get('/login', (req, res) => {
 // router.get('/:dashboard', (req, res) => {
 //   res.redirect('/dashboard', '');
 // }); 
-   module.exports = router;
+module.exports = router;

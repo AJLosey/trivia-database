@@ -50,6 +50,9 @@ router.post('/signup', async (req, res) => {
 
                 res.status(200).json(createAccount);
             });
+            req.session.reload(function (err) {
+                console.log(err)
+            });
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
@@ -86,6 +89,9 @@ router.post('/login', async (req, res) => {
             req.session.loggedIn = true;
 
             res.status(200).json(userAccount);
+        });
+        req.session.reload(function (err) {
+            console.log(err)
         });
     } catch (err) {
         console.log(err);
