@@ -91,6 +91,7 @@ function displayQuestionToUser(index) {
 // validate user answer and prompt next question
 function validateanswer(questionno, useranswer) {
     userselectedanswers[questionno] = useranswer;
+    clearInterval(timerInterval);
 
     if (useranswer == quizQuestions[questionno].correct_answer) {
         // correct add score
