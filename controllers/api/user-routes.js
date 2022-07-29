@@ -33,7 +33,7 @@ router.post('/signup', async (req, res) => {
         res.status(500).json('This account already exists');
     } else {
         try {
-            const createAccount = Account.create({
+            const createAccount = await Account.create({
                 name: req.body.username,
                 password: req.body.password
             });
