@@ -2,6 +2,7 @@ const quizSectionEl = $('#quizsection');
 const gameSummaryEl = $('#gamesummary');
 const questionSummaryEl = $('#questionssummary');
 const scoreSummaryEl = $('#userscoresummary');
+const timerUI = $('#timerUI')
 const answerSummaryEl = $('#answersummary');
 const quizSummaryAreaEl = $('#quizsummaryarea');
 
@@ -80,6 +81,7 @@ function displayQuestionToUser(index) {
     // run timer don't show to user
     timerInterval = setInterval(() => {
         bonusTimeLimit--;
+        timerUI.html(`<h3>Time Left: ${bonusTimeLimit}</h3>`);
         if (bonusTimeLimit === 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
