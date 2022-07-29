@@ -2,67 +2,82 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Trivia</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/category.css">
 </head>
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{category.category_name}}</li>
-  </ol>
-</nav>
+<body>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{category.category_name}}</li>
+    </ol>
+  </nav>
 
 
-  
-  
+
+
   <section>
-      <h1>{{category.category_name}} Trivia</h1>
-      {{#if questions}}
-{{#each questions as |question|}}
-<div class="container-fluid">
-    <div class="modal-dialog">
+    <h1>{{category.category_name}} Trivia</h1>
+    {{#if questions}}
+    {{#each questions as |question|}}
+    <div class="container-fluid">
+      <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>Q. {{decode_string question.question}}</h3>
+          <div class="modal-header">
+            <h3>Q. {{decode_string question.question}}</h3>
+          </div>
+          <div class="modal-body">
+            <div class="col-xs-3 5"> </div>
+            <div class="quiz" id="quiz" data-toggle="buttons">
+              <label class="element-animation1 btn btn-lg btn-danger btn-block"><span class="btn-label"><i
+                    class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">
+                {{question.correct_answer}}</label>
+              <label class="element-animation2 btn btn-lg btn-danger btn-block"><span class="btn-label"><i
+                    class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">
+              </label>
+              <label class="element-animation3 btn btn-lg btn-danger btn-block"><span class="btn-label"><i
+                    class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">
+              </label>
+              <label class="element-animation4 btn btn-lg btn-danger btn-block"><span class="btn-label"><i
+                    class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">
+              </label>
             </div>
-            <div class="modal-body">
-                <div class="col-xs-3 5"> </div>
-                <div class="quiz" id="quiz" data-toggle="buttons"> 
-                <label class="element-animation1 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1"> {{question.correct_answer}}</label> 
-                <label class="element-animation2 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2"> </label> 
-                <label class="element-animation3 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3"> </label> 
-                <label class="element-animation4 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">  </label> </div>
-            </div>
+          </div>
         </div>
-    </div>
+      </div>
     </div>
     <h3>{{decode_string question.question}}</h3>
     <p>{{decode_string question.correct_answer}}</p>
     <p>{{question.incorrect_answers}}</p>
     {{/each}}
-    {{else}}      
+    {{else}}
     <div id="quizlist">
-      <p>Choose game you would like to play.</p>  
+      <p>Choose game you would like to play.</p>
     </div>
-    <div class="row">    
-    <div class="col-12 col-md-9">
-      <div id="quizsection"></div>
-    </div>    
-    <div class="col-12 col-md-3" id="quizsummaryarea">
-      <div id="questionssummary" class="text-center"></div> 
-      <hr>
-      <div id="userscoresummary" class="text-center"><h3>Your Score: </h3></div> 
-      <hr>
-      <div id="answersummary" class="text-center"></div> 
-    </div>
+    <div class="row">
+      <div class="col-12 col-md-9">
+        <div id="quizsection"></div>
+      </div>
+      <div class="col-12 col-md-3" id="quizsummaryarea">
+        <div id="questionssummary" class="text-center"></div>
+        <hr>
+        <div id="userscoresummary" class="text-center">
+          <h3>Your Score: </h3>
+        </div>
+        <hr>
+        <div id="answersummary" class="text-center"></div>
+      </div>
     </div>
     {{/if}}
-  </section>  
-    <h2 class="bg-info p-2 text-white rounded mt-5">Categories</h2>
-      <div id="categorieslist"></div>     
-  
+  </section>
+  <h2 class="bg-info p-2 text-white rounded mt-5">Categories</h2>
+  <div id="categorieslist"></div>
+
+</body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/categories.js"></script>
 <script src="/js/quiz.js"></script>

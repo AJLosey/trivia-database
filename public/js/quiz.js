@@ -8,7 +8,7 @@ const quizSummaryAreaEl = $('#quizsummaryarea');
 // global variables
 let quizQuestions = [];
 let userselectedanswers = [];
-let bonus_time_limit; // if seconds left add remaning second to user score
+let bonusTimeLimit; // if seconds left add remaning second to user score
 let timerInterval;
 let userScore = 0;
 
@@ -208,10 +208,3 @@ function init(quizId, quizName) {
     quizSectionEl.append(divContainerEl);
     //generateQuestions(id, difficulty);  
 }
-// listner for quiz start with user choice of difficulty
-//document.querySelector('.playbtn').addEventListener('click', init);
-// document.querySelector('#btneasy').addEventListener('click', init);
-// document.querySelector('#btnmedium').addEventListener('click', init);
-// document.querySelector('#btnhard').addEventListener('click', init);
-
-// You have 30 seconds to answer each question. The faster you answer, the higher your score. When you are done, try again to beat your best score!

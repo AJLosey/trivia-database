@@ -1,10 +1,9 @@
 // Routes for home page goes here
 const router = require('express').Router();
-const { Home } = require('../models');
 // const { Post, Comment, User } = require('../models/'); // change model names
 const Category = require('../models/category');
 // // Import the custom middleware
-const withAuth = require('../utils/auth');
+
 
 // Author: Mayur
 // Purpose: Get route to fetch list of all categories order by category_name from database
@@ -49,11 +48,4 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-// router.get('/:category', (req, res) => {
-//   res.redirect('/category', '');
-// });
-
-// router.get('/:dashboard', (req, res) => {
-//   res.redirect('/dashboard', '');
-// }); 
 module.exports = router;

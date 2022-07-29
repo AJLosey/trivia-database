@@ -54,9 +54,5 @@ Question.hasMany(QuizQuestion, {
     foreignKey: 'question_id'
 });
 
-// Question.belongsTo(QuizQuestion, {
-//     through: QuizQuestion,
-//     foreignKey: 'question_id'
-// });
 
-module.exports = { Account, Category, Question, QuizQuestion, Quiz, QuestionBank};
+module.exports = { Account, Category, Question, QuizQuestion, Quiz, QuestionBank };

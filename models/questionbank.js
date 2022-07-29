@@ -14,10 +14,6 @@ QuestionBank.init(
         },
         categoryid: {
             type: DataTypes.INTEGER,
-            // references: {
-            //     model: "Category",
-            //     key: 'id'
-            // }
         },
         questiontype: {
             type: DataTypes.STRING,

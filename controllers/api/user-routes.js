@@ -29,25 +29,19 @@ router.post('/signup', async (req, res) => {
             name: req.body.username
         }
     });
-
     if (userAccount) {
         res.status(500).json('This account already exists');
     } else {
-
-
         try {
             const createAccount = Account.create({
                 name: req.body.username,
                 password: req.body.password
             });
 
-
             req.session.save(() => {
-
                 //keeps track of who is logged in
                 req.session.account = req.body.username;
                 req.session.loggedIn = true;
-
                 res.status(200).json(createAccount);
             });
             req.session.reload(function (err) {
@@ -58,7 +52,6 @@ router.post('/signup', async (req, res) => {
             res.status(500).json(err);
         }
     }
-
 });
 
 //login
@@ -83,11 +76,9 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.save(() => {
-
             //keeps track of who is logged in
             req.session.account = req.body.username;
             req.session.loggedIn = true;
-
             res.status(200).json(userAccount);
         });
         req.session.reload(function (err) {
@@ -99,7 +90,6 @@ router.post('/login', async (req, res) => {
     }
 });
 
-//logout
 
 
 module.exports = router;

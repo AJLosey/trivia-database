@@ -13,11 +13,11 @@ fetch('/api/category/')
             }  
         });
     } else {
-       // categoryListEl.text("There was an error occurred while connecting to REST API. Please try again!");
+       categoryListEl.text("There was an error occurred while connecting to REST API. Please try again!");
     }
   })
   .catch(function (error) {
-    //categoryListEl.text("There was an error occurred while connecting to REST API. Please try again!");
+    categoryListEl.text("There was an error occurred while connecting to REST API. Please try again!");
   });
 
 
